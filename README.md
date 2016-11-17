@@ -12,7 +12,7 @@ The database is represented by a simple ets table.
 The usefulness of this program is very limited as you could just use ets tables directly in your code anyway. The only purpose of this program is to demonstrate message passing and ets tables.
 
 Done:
-* Nothing
+* Most of the functionality perhaps?
 
 Not done:
-* Everything
+* All of the testing
