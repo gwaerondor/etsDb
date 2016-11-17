@@ -10,8 +10,7 @@ start() ->
 loop(Tid) ->
     receive
 	{get, Key, Sender} ->
-	    Result = get_value(Tid, Key),
-	    Sender ! Result;
+	    Sender ! get_value(Tid, Key),
 	{delete, Key, Sender} ->
 	    Sender ! delete_value(Tid, Key);
 	{set, Key, Value, Sender} ->
