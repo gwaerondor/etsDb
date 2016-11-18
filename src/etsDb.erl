@@ -16,7 +16,10 @@ loop(Tid) ->
 	{set, Key, Value, Sender} ->
 	    Sender ! set_value(Tid, Key, Value);
 	{transform, Key, Function, Sender} ->
-	    Sender ! transform_value(Tid, Key, Function)
+	    Sender ! transform_value(Tid, Key, Function);
+	{close, Sender} ->
+	    Sender ! close(Tid),
+	    exit(closed)
     end,
     loop(Tid).
 
@@ -45,3 +48,7 @@ transform_value(Tid, Key, Function) ->
 	    ets:insert(Tid, {Key, Transformed}),
 	    ok
     end.
+
+close(Tid) ->
+    ets:delete(Tid),
+    ok.
