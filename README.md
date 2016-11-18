@@ -18,11 +18,11 @@ The test module etsDb_tests.erl shows examples of how it can be used.
 
 ## Compiling
 From the root directory of the project, etsDb, run:
-```make```
+```make´´´
 Compiled modules will be output into etsDb/bin/
 
 ## Running tests
-```make tests```
+```make tests´´´
 
 ## Project progress
 ### Done: Everything.
