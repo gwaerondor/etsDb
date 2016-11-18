@@ -17,13 +17,18 @@ The only purpose of this program is to demonstrate message passing and ets table
 The test module etsDb_tests.erl shows examples of how it can be used.
 
 ## Compiling
-From the root directory of the project, etsDb, run:
-```make´´´
+From the root directory of the project, etsDb, run
+
+`make`
+
 Compiled modules will be output into etsDb/bin/
 
 ## Running tests
-```make tests´´´
+`make tests`
+
 
 ## Project progress
-### Done: Everything.
-### Not done: Nothing! This is all you'll get.
+### Done:
+Everything.
+### Not done:
+Nothing! This is all you'll get.
