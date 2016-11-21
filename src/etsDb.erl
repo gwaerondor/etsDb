@@ -2,8 +2,8 @@
 -export([start/0]).
 
 start() ->
-    Tid = ets:new(database, [set, public, {keypos, 1}]),
     spawn(fun() -> register(database, self()), 
+		   Tid = ets:new(database, [set, {keypos, 1}]), 
 		   loop(Tid)
 	  end).
 

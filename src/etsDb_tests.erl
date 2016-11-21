@@ -99,8 +99,8 @@ transforming_with_crash_should_return_error() ->
     Transform_result = receive_response(),
     ?assertEqual(Transform_expected, Transform_result),
     database ! {get, a, self()},
-    Get_expected = 1,
     Get_result = receive_response(),
+    Get_expected = 1,
     ?assertEqual(Get_expected, Get_result).    
 
 receive_response() ->
