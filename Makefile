@@ -1,6 +1,7 @@
 OUTDIR=bin/
 
 compile:
+	mkdir -p $(OUTDIR)
 	erlc -o $(OUTDIR) src/etsDb.erl 
 	erlc -o $(OUTDIR) src/etsDb_tests.erl 
 

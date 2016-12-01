@@ -20,7 +20,9 @@ database_test_() ->
       {"It should be possible to transform the value of a given key",
        fun transforming_value_should_work/0},
       {"Transformation resulting in a crash should return an error",
-       fun transforming_with_crash_should_return_error/0}]
+       fun transforming_with_crash_should_return_error/0},
+      {"Transformation should not work on a non-existing entry",
+       fun transforming_non_existing_should_not_work/0}]
     }.
 
 setup() ->
@@ -102,6 +104,15 @@ transforming_with_crash_should_return_error() ->
     Get_expected = 1,
     Get_result = receive_response(),
     ?assertEqual(Get_expected, Get_result).    
+
+transforming_non_existing_should_not_work() ->
+    Transform = fun(X) ->
+			io_lib:format("~p~n", [X])
+		end,
+    database ! {transform, d, Transform, self()},
+    Result = receive_response(),
+    Expected = {error, "No such key"},
+    ?assertEqual(Expected, Result).			
 
 receive_response() ->
     receive

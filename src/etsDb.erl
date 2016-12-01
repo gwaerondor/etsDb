@@ -25,7 +25,7 @@ loop(Tid) ->
 
 get_value(Tid, Key) ->
     case ets:lookup(Tid, Key) of
-	[{_,Value}] ->
+	[{_, Value}] ->
 	    Value;
 	[] ->
 	    {error, "No such key"}
@@ -40,7 +40,14 @@ set_value(Tid, Key, Value) ->
     ok.
 
 transform_value(Tid, Key, Function) ->
-    Value = get_value(Tid, Key),
+    case ets:lookup(Tid, Key) of
+	[{_, Value}] ->
+	    perform_transformation(Tid, Key, Function, Value);
+	[] ->
+	    {error, "No such key"}
+    end.
+
+perform_transformation(Tid, Key, Function, Value) ->
     case catch Function(Value) of
 	{'EXIT', _} ->
 	    {error, "Transformation function not valid for element"};
